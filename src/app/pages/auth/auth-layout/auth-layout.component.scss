@@ -1,0 +1,41 @@
+:host {
+    display: block;
+    min-height: 100vh;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    //gap: 80px;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background-image: url('/assets/bg_1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &__title {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        //gap: 80px;
+        margin-bottom: 82px;
+    }
+
+    &__title__main {
+        font-family: 'Starjedi';
+        font-size: 30px;
+        color: var(--text-secondary);
+        margin-bottom: 44px;
+    }
+
+    &__title__sub {
+        font-family: 'Galaxy';
+        font-size: 70px;
+        color: var(--text-secondary);
+    }
+}

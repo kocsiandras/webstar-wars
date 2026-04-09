@@ -1,0 +1,27 @@
+@use 'mixins' as *;
+
+.login-container {
+    @include align-column;
+    @include align-center;
+    gap: 40px;
+
+    &__input {
+        @include align-column;
+        @include align-center;
+        gap: 20px;
+        width: 400px;
+
+        &__item {
+            @include align-column;
+            @include align-center;
+            gap: 5px;
+            width: 100%;
+    
+            label {
+                font-family: 'Poppins_Bold';
+                font-size: 14px;
+                color: var(--text-secondary);
+            }
+        }
+    }
+}

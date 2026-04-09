@@ -1,1 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@font-face {
+    font-family: 'Starjedi';
+    src: url('./assets/Starjedi.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/Poppins-Regular.ttf') format('truetype');
+    //font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins_Bold';
+    src: url('./assets/Poppins-Bold.ttf') format('truetype');
+    //font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins_Black';
+    src: url('./assets/Poppins-Black.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Galaxy';
+    src: url('./assets/SfDistantGalaxyAltoutline-e2Bp.ttf') format('truetype');
+    //font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    font-family: "Poppins", "Starjedi", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 14px;
+    color: #fff;
+}
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --gray-dark: #333333;
+    --gray-medium: #8A8A8A;
+    --yellow: #FFD500;
+
+
+    --text-primary: var(--black);
+    --text-secondary: var(--white);
+}
+
+.webstar-input {
+    width: 100%;
+    height: 45px;
+    border-radius: 7px;
+    font-family: 'Poppins';
+    font-size: 16px;
+    color: var(--text-primary);
+    border: none;
+    text-align: center;
+}
