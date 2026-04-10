@@ -1,5 +1,6 @@
-import { Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { ILoginResponse } from "../../core/interfaces/auth.interface";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,8 @@ export class AuthStoreService {
     private jwtRefreshTokenKey = 'refresh_token';
 
     private readonly loggedIn = signal<boolean>(false);
-
+    
+    private readonly router = inject(Router);
 
     isLoggedIn(): boolean {
         return this.loggedIn();
@@ -35,6 +37,12 @@ export class AuthStoreService {
     removeTokens(): void {
         localStorage.removeItem(this.jwtAccessTokenKey);
         localStorage.removeItem(this.jwtRefreshTokenKey);
+    }
+
+    logout(): void {
+        this.removeTokens();
+        this.setIsLoggedIn(false);
+        this.router.navigate(['/auth/login']);
     }
 
 }

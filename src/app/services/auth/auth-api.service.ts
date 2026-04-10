@@ -14,6 +14,6 @@ export class AuthApiService {
     private readonly http = inject(HttpClient);
 
     login(data: ILoginForm): Observable<ILoginResponse> {
-        return this.http.post<ILoginResponse>(this.baseUrl + 'frontend-felveteli/v2/authentication/', data);
+        return this.http.post<ILoginResponse>(this.baseUrl + 'authentication/', data);
     }
 }

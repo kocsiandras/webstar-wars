@@ -1,0 +1,70 @@
+{
+  "characters": [
+    {
+      "id": "vader",
+      "name": "Darth\nVader",
+      "side": "DARK",
+      "characteristic": {
+        "power": "Sötét erő, fénykard",
+        "midichlorian": 21000
+      },
+      "createdTimestamp": 1576967247,
+      "description": "A Galaktikus Birodalom rettegett helytartója, egykor Anakin Skywalker, a kiválasztott."
+    },
+    {
+      "id": "luke",
+      "name": "Luke Skywalker",
+      "side": "LIGHT",
+      "characteristic": {
+        "power": "Erő-érzékenység, fénykard, Jedi képzés",
+        "midichlorian": 14500
+      },
+      "createdTimestamp": 1577053647,
+      "description": "Tatooine farmjáról indulva a Lázadás egyik legfontosabb szövetségese és az új Jedi reménye."
+    },
+    {
+      "id": "anakin",
+      "name": "Anakin Skywalker",
+      "side": "LIGHT",
+      "characteristic": {
+        "power": "Erő, fénykard, pilótázás, szerelőtehetség",
+        "midichlorian": 27000
+      },
+      "createdTimestamp": 1577140047,
+      "description": "A kiválasztottnak tartott Tatooine-i rabszolga, aki Jedi lovaggá vált, a Klónháborúk hőse, mielőtt a Birodalom sötét oldalára lépett."
+    },
+    {
+      "id": "kenobi",
+      "name": "Obi-Wan Kenobi",
+      "side": "LIGHT",
+      "characteristic": {
+        "power": "Form III (Soresu), Erő-használat, bölcsesség",
+        "midichlorian": 13400
+      },
+      "createdTimestamp": 1577226447,
+      "description": "A Klónháborúk hőse, mester és tanító, aki a reményt őrizte a sötétség közepette is."
+    },
+    {
+      "id": "phasma",
+      "name": "Captain Phasma",
+      "side": "DARK",
+      "characteristic": {
+        "power": "Króm páncél, parancsnokság, taktika, fegyveres harc",
+        "midichlorian": 900
+      },
+      "createdTimestamp": 1577312847,
+      "description": "Az Első Rend elit viharosztagos-kapitánya, aki a Starkiller bázis és az Ellenállás elleni harcok során is helytállt."
+    },
+    {
+      "id": "boba",
+      "name": "Boba\nFett",
+      "side": "DARK",
+      "characteristic": {
+        "power": "Mandalóri páncél, fegyverzet, vadász tapasztalat",
+        "midichlorian": 1200
+      },
+      "createdTimestamp": 1577399247,
+      "description": "A galaxis egyik legelismertebb fejvadásza, Jango Fett klónja, aki a hírnév és a zsák pénz nyomában jár."
+    }
+  ]
+}

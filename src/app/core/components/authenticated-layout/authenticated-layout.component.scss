@@ -1,0 +1,34 @@
+@use 'mixins' as *;
+
+.main-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    background: transparent;
+    position: fixed;
+    top: 0;
+    /* Inset from both sides — do not combine `width: 100%` with horizontal margin (overflow / ignored margin). */
+    z-index: 1000;
+
+    &__container {
+        @include vertical-align-center;
+        @include common-width(0px);
+        justify-content: space-between;
+        padding: 0px 2px;
+        border-bottom: 1px solid var(--gray-medium);
+        height: 65px;
+    }
+
+    &__item {
+        @include align-center;
+        gap: 12px;
+        cursor: pointer;
+    }
+
+    &__item-text {
+        font-family: 'Poppins_Bold';
+        font-size: 16px;
+        color: var(--text-secondary);
+    }
+}

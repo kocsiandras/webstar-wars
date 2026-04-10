@@ -1,14 +1,13 @@
+@use 'mixins' as *;
+
 :host {
     display: block;
     min-height: 100vh;
 }
 
 .auth-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include align-center;
     flex-direction: column;
-    //gap: 80px;
     min-height: 100vh;
     width: 100%;
     position: relative;
@@ -18,11 +17,8 @@
     background-repeat: no-repeat;
 
     &__title {
-        display: flex;
-        justify-content: center;
+        @include align-center;
         flex-direction: column;
-        align-items: center;
-        //gap: 80px;
         margin-bottom: 82px;
     }
 

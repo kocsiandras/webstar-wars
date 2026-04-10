@@ -1,0 +1,134 @@
+@use 'mixins' as *;
+
+.character-selector-main-container {
+    background-image: url('/assets/bg_2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+
+.character-selector-container {
+    @include common-width;
+}
+
+.character-selector-header {
+    @include vertical-align-center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    &__left {
+        @include vertical-align-center;
+        gap: 70px;
+    }
+
+    &__right-buttons {
+        @include vertical-align-center;
+        gap: 20px;
+    }
+
+    &__right-button {
+        border-radius: 50%;
+        border: 1px solid var(--white);
+        height: 50px;
+        width: 50px;
+        background-color: transparent;
+        @include align-center;
+        cursor: pointer;
+    }
+
+    &__right-button-image {
+        transform: rotate(180deg);
+    }
+}
+
+.character-info {
+    @include vertical-align-center;
+    gap: 20px;
+
+    &__icon {
+        width: 50px;
+        height: 50px;
+        padding: 8px;
+        background-color: var(--white);
+        @include align-center;
+
+        &--yellow {
+            background-color: var(--yellow);
+        }
+    }
+
+    &__side-icon-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: var(--black);
+    }
+
+    &__side-label {
+        @include align-column;
+    }
+
+    &__label-title {
+        font-family: 'Poppins_Bold';
+        font-size: 16px;
+        color: var(--text-active);
+        text-transform: uppercase;
+    }
+
+    &__label-text {
+        font-family: 'Poppins_Black';
+        font-size: 20px;
+        color: var(--text-secondary);
+    }
+}
+
+.character-selector-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+
+    &__left {
+        @include align-column;
+        width: 550px;
+        margin-top: 25px;
+    }
+
+    &__right {
+        position: relative;
+        margin-top: 107px;
+
+    }
+
+    &__character-name {
+        font-family: 'Starjedi';
+        font-size: 90px;
+        color: var(--text-secondary);
+        line-height: 1;
+    }
+
+    &__character-info {
+        font-family: 'Poppins';
+        font-size: 16px;
+        color: var(--text-secondary);
+        margin-top: 20px;
+    }
+
+    &__character-img-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 50%;
+        background-color: var(--yellow);
+        width: 415px;
+        height: 415px;
+
+        img {
+            width: 600px;
+            position: absolute;
+            top: -92px;
+            right: 0;
+        }
+    }
+}

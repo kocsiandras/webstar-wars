@@ -1,10 +1,11 @@
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { handleHttpError } from '../../../shared/utils/http-error.utils';
+import { Router } from '@angular/router';
 import { AuthApiService } from '../../../services/auth/auth-api.service';
 import { AuthStoreService } from '../../../services/auth/auth-store.service';
 import { WebstarButtonComponent } from '../../../shared/components/webstar-button/webstar-button.component';
+import { handleHttpError } from '../../../shared/utils/http-error.utils';
 
 interface ILoginForm {
   username: string;
@@ -28,6 +29,7 @@ export class LoginComponent {
 
   private readonly authApiService = inject(AuthApiService);
   private readonly authStoreService = inject(AuthStoreService);
+  private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
 
   submit(): void {
@@ -42,6 +44,7 @@ export class LoginComponent {
           this.errorMessage.set(null);
           this.authStoreService.storeTokens(response);
           this.authStoreService.setIsLoggedIn(true);
+          this.router.navigate(['/character-selector']);
         },
         error: (error: unknown) => {
           const serverMessage = handleHttpError(error, {
