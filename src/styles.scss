@@ -59,10 +59,13 @@ body {
     --gray-dark: #333333;
     --gray-medium: #8A8A8A;
     --yellow: #FFD500;
+    --red: #FF3232;
 
 
     --text-primary: var(--black);
     --text-secondary: var(--white);
+    --text-error: var(--red);
+    --button-bg-active: var(--yellow);
 }
 
 .webstar-input {

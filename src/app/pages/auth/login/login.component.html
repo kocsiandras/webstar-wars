@@ -1,13 +1,18 @@
 <div class="login-container">
     <div class="login-container__input" [formGroup]="loginForm">
-        <div class="login-container__input__item">
-            <label>Felhasználónév</label>
+        <div class="login-container__field">
+            <label class="login-container__label">Felhasználónév</label>
             <input class="webstar-input" type="text" name="username" formControlName="username">
         </div>
-        <div class="login-container__input__item">
-            <label>Jelszó</label>
+        <div class="login-container__field">
+            <label class="login-container__label">Jelszó</label>
             <input class="webstar-input" type="password" name="password" formControlName="password">
         </div>
     </div>
-    <app-webstar-button text="Belépés" buttonStyleType="active" (btnClick)="submit()"></app-webstar-button>
+    <div class="login-container__footer">
+        @if (errorMessage()) {
+            <p class="login-container__error">{{ errorMessage() }}</p>
+        }
+        <app-webstar-button text="Belépés" buttonStyleType="active" (btnClick)="submit()"></app-webstar-button>
+    </div>
 </div>

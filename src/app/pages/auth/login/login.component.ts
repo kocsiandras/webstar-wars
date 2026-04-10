@@ -1,6 +1,7 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { handleHttpError } from '../../../shared/utils/http-error.utils';
 import { AuthApiService } from '../../../services/auth/auth-api.service';
 import { AuthStoreService } from '../../../services/auth/auth-store.service';
 import { WebstarButtonComponent } from '../../../shared/components/webstar-button/webstar-button.component';
@@ -18,28 +19,38 @@ interface ILoginForm {
 })
 export class LoginComponent {
 
-  private readonly authApiService = inject(AuthApiService);
-  private readonly authStoreService = inject(AuthStoreService);
-  private readonly destroyRef = inject(DestroyRef);
-
   loginForm = new FormGroup<{ [K in keyof ILoginForm]: FormControl<ILoginForm[K]> }>({
     username: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
     password: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
   });
 
+  errorMessage = signal<string | null>(null);
+
+  private readonly authApiService = inject(AuthApiService);
+  private readonly authStoreService = inject(AuthStoreService);
+  private readonly destroyRef = inject(DestroyRef);
+
   submit(): void {
     if (!this.loginForm.valid) return;
+
+    this.errorMessage.set(null);
 
     this.authApiService.login(this.loginForm.value as ILoginForm)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
+          this.errorMessage.set(null);
           this.authStoreService.storeTokens(response);
           this.authStoreService.setIsLoggedIn(true);
         },
-        error: (error) => {
-          console.error(error);
-        }
-      })
+        error: (error: unknown) => {
+          const serverMessage = handleHttpError(error, {
+            returnServerMessageFor500: true,
+          });
+          if (serverMessage !== undefined) {
+            this.errorMessage.set(serverMessage);
+          }
+        },
+      });
   }
 }

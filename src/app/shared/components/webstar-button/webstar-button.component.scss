@@ -12,7 +12,7 @@
     }
 
     &.active {
-        background-color: var(--yellow);
+        background-color: var(--button-bg-active);
 
         .button__text {
             color: var(--text-primary);
