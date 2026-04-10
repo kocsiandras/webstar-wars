@@ -20,12 +20,22 @@
                     <div class="character-info__special-power-label">
                         <div class="character-info__label-title">Különleges erő</div>
                         @if (activeCharacter()) {
-                        <div class="character-info__label-text">{{activeCharacter()!.characteristic?.power}}</div>
+                        <div class="character-info__label-text">{{activeCharacter()!.characteristic.power}}</div>
                         }
                     </div>
                 </div>
             </div>
             <div class="character-selector-header__right">
+                @if (characters().length) {
+                <div class="character-selector-header__dots" role="tablist" aria-label="Karakterek">
+                    @for (c of characters(); track c.id; let i = $index) {
+                    <button type="button" class="character-selector-header__dot"
+                        [class.character-selector-header__dot--active]="i === characterIndex()"
+                        (click)="selectCharacter(i)" [attr.aria-selected]="i === characterIndex()"
+                        [attr.aria-label]="'Karakter ' + (i + 1)"></button>
+                    }
+                </div>
+                }
                 <div class="character-selector-header__right-buttons">
                     <div class="character-selector-header__right-button"><img src="/assets/chevron.png" alt="arrow-left"
                             (click)="previousCharacter()"></div>
@@ -45,10 +55,16 @@
                 <div class="character-selector-content__modules"></div>
             </div>
             <div class="character-selector-content__right">
-                <div class="character-selector-content__character-img-bg">
-                    @if (activeCharacter()) {
-                    <img [src]="'/assets/' + activeCharacter()!.id + '.png'" alt="character-image">
-                    }
+                <div class="character-selector-content__portrait">
+                    <div class="character-selector-content__character-img-bg" aria-hidden="true"></div>
+                    <swiper-container #swiperRef class="character-portrait-swiper" slides-per-view="1" space-between="0"
+                        (swiperslidechange)="onSwiperSlideChange()">
+                        @for (c of characters(); track c.id) {
+                        <swiper-slide class="character-portrait-swiper__slide">
+                            <img [src]="'/assets/' + c.id + '.png'" [alt]="c.name" />
+                        </swiper-slide>
+                        }
+                    </swiper-container>
                 </div>
             </div>
         </div>

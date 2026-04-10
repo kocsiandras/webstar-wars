@@ -23,6 +23,47 @@
         gap: 70px;
     }
 
+    &__right {
+        @include vertical-align-center;
+        gap: 28px;
+        overflow: visible;
+    }
+
+    &__dots {
+        @include vertical-align-center;
+        gap: 8px;
+        overflow: visible;
+        padding: 4px 2px;
+    }
+
+    &__dot {
+        position: relative;
+        width: 4px;
+        height: 4px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background-color: var(--gray-medium);
+
+        &--active {
+            background-color: var(--white);
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 12px;
+                height: 12px;
+                border: 1px solid var(--white);
+                border-radius: 50%;
+                box-sizing: border-box;
+                pointer-events: none;
+            }
+        }
+    }
+
     &__right-buttons {
         @include vertical-align-center;
         gap: 20px;
@@ -97,8 +138,46 @@
 
     &__right {
         position: relative;
-        margin-top: 107px;
+        min-height: 520px;
+        min-width: 600px;
+    }
 
+    &__portrait {
+        --portrait-top-bleed: 92px;
+        --character-portrait-offset: 107px;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        pointer-events: none;
+
+        .character-portrait-swiper {
+            pointer-events: auto;
+        }
+
+        .character-portrait-swiper__slide {
+            position: relative;
+            height: 100%;
+            overflow: visible;
+            margin-top: var(--character-portrait-offset);
+        }
+
+        /* Swiper host: portrait has no fixed size; this sets the carousel box (600×580). */
+        .character-portrait-swiper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 600px;
+            height: 580px;
+        }
+
+        .character-portrait-swiper img {
+            width: 600px;
+            position: absolute;
+            top: calc(-1 * var(--portrait-top-bleed));
+            right: 0;
+            cursor: grab;
+        }
     }
 
     &__character-name {
@@ -119,16 +198,10 @@
         position: absolute;
         top: 0;
         right: 0;
-        border-radius: 50%;
-        background-color: var(--yellow);
         width: 415px;
         height: 415px;
-
-        img {
-            width: 600px;
-            position: absolute;
-            top: -92px;
-            right: 0;
-        }
+        border-radius: 50%;
+        background-color: var(--yellow);
+        margin-top: var(--character-portrait-offset);
     }
 }
