@@ -8,7 +8,7 @@
                     </div>
                     <div class="character-info__side-label">
                         <div class="character-info__label-title">Oldal</div>
-                        @if (activeCharacter()) {
+                        @if(this.activeCharacter()) {
                         <div class="character-info__label-text">{{CharacterSideLabel[activeCharacter()!.side]}}</div>
                         }
                     </div>
@@ -19,9 +19,10 @@
                     </div>
                     <div class="character-info__special-power-label">
                         <div class="character-info__label-title">Különleges erő</div>
-                        @if (activeCharacter()) {
+                        @if(this.activeCharacter()) {
                         <div class="character-info__label-text">{{activeCharacter()!.characteristic.power}}</div>
                         }
+
                     </div>
                 </div>
             </div>
@@ -31,11 +32,11 @@
                     @for (c of characters(); track c.id; let i = $index) {
                     <button type="button" class="character-selector-header__dot"
                         [class.character-selector-header__dot--active]="i === characterIndex()"
-                        (click)="selectCharacter(i)" [attr.aria-selected]="i === characterIndex()"
+                        (click)="paginateCharacter(i)" [attr.aria-selected]="i === characterIndex()"
                         [attr.aria-label]="'Karakter ' + (i + 1)"></button>
                     }
                 </div>
-                }
+
                 <div class="character-selector-header__right-buttons">
                     <div class="character-selector-header__right-button"><img src="/assets/chevron.png" alt="arrow-left"
                             (click)="previousCharacter()"></div>
@@ -43,16 +44,34 @@
                             class="character-selector-header__right-button-image" src="/assets/chevron.png"
                             alt="arrow-left" (click)="nextCharacter()"></div>
                 </div>
+                }
             </div>
         </div>
         <div class="character-selector-content">
             <div class="character-selector-content__left">
-                @if (activeCharacter()) {
-                <div class="character-selector-content__character-name"
-                    [innerHTML]="activeCharacter()?.name | characterNameHtml"></div>
-                <div class="character-selector-content__character-info">{{activeCharacter()?.description}}</div>
-                }
-                <div class="character-selector-content__modules"></div>
+                <div>
+                    <div class="character-selector-content__character-name"
+                        [innerHTML]="activeCharacter()?.name | characterNameHtml"></div>
+                    <div class="character-selector-content__character-info">{{activeCharacter()?.description}}</div>
+                </div>
+                <div class="character-selector-content__modules">
+                    <div class="character-selector-content__modules-main-title">Modulok</div>
+                    <div class="character-selector-content__modules-container">
+                        <div class="character-selector-content__modules-title">Szimuláció</div>
+                        <div class="character-selector-content__modules-content">
+                            <div class="character-selector-content__modules-content-title">Válassz két karaktert
+                                ellentétes oldalakról</div>
+                            <div class="character-selector-content__modules-content-buttons">
+                                <app-webstar-button [buttonStyleType]="{'tight': true, 'active': isActiveCharacterSelected()}" text="Karakter kiválasztása"
+                                    (btnClick)="selectCharacter()"></app-webstar-button>
+                                @if (selectedCharacters().length === 2 && isActiveCharacterSelected()) {
+                                <app-webstar-button [buttonStyleType]="'tight active'" text="Küzdelem indítása"
+                                    (btnClick)="startBattle()"></app-webstar-button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="character-selector-content__right">
                 <div class="character-selector-content__portrait">

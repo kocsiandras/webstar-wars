@@ -1,26 +1,32 @@
 .button {
     height: 45px;
     min-width: 250px;
-    border: none;
+    border: 2px solid var(--button-border);
     border-radius: 5px;
     cursor: pointer;
+    background-color: transparent;
 
     &__text {
         font-family: 'Poppins_Bold';
         font-size: 16px;
-        color: var(--text-secondary);
+        color: var(--button-text-primary);
         text-align: center;
     }
 
     &.active {
+        border: 2px solid transparent;
         background-color: var(--button-bg-active);
 
         .button__text {
-            color: var(--text-primary);
+            font-family: 'Poppins_Bold';
+            font-size: 16px;
+            color: var(--button-text-active);
         }
     }
 
     &.tight {
+        min-width: 150px;
+        padding: 0px 12px;
 
     }
 
