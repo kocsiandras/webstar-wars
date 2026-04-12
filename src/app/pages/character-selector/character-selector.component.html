@@ -51,7 +51,7 @@
             <div class="character-selector-content__left">
                 <div>
                     <div class="character-selector-content__character-name"
-                        [innerHTML]="activeCharacter()?.name | characterNameHtml"></div>
+                        [innerHTML]="activeCharacter()?.name | characterNameHtml: true"></div>
                     <div class="character-selector-content__character-info">{{activeCharacter()?.description}}</div>
                 </div>
                 <div class="character-selector-content__modules">
@@ -62,13 +62,17 @@
                             <div class="character-selector-content__modules-content-title">Válassz két karaktert
                                 ellentétes oldalakról</div>
                             <div class="character-selector-content__modules-content-buttons">
-                                <app-webstar-button [buttonStyleType]="{'tight': true, 'active': isActiveCharacterSelected()}" text="Karakter kiválasztása"
-                                    (btnClick)="selectCharacter()"></app-webstar-button>
+                                <app-webstar-button
+                                    [buttonStyleType]="{'tight': true, 'active': isActiveCharacterSelected()}"
+                                    text="Karakter kiválasztása" (btnClick)="selectCharacter()"></app-webstar-button>
                                 @if (selectedCharacters().length === 2 && isActiveCharacterSelected()) {
                                 <app-webstar-button [buttonStyleType]="'tight active'" text="Küzdelem indítása"
                                     (btnClick)="startBattle()"></app-webstar-button>
                                 }
                             </div>
+                            @if (errorMessage()) {
+                                <p class="error-message">{{ errorMessage() }}</p>
+                            }
                         </div>
                     </div>
                 </div>

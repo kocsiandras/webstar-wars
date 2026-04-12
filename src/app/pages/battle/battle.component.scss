@@ -1,0 +1,145 @@
+@use 'mixins' as *;
+
+.battle-main-container {
+    background-image: url('/assets/bg_3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+
+.battle-container {
+    @include common-width;
+}
+
+.battle-header {
+    font-family: 'Starjedi';
+    font-size: 60px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+.battle-content {
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+
+    &__character {
+        @include align-column;
+    }
+
+    &__side-label {
+        font-family: 'Poppins_Black';
+        font-size: 24px;
+        color: var(--text-secondary);
+        text-align: left;
+        margin-bottom: 62px;
+        margin-left: 70px;
+
+        &--right {
+            text-align: right;
+            margin-right: 70px;
+        }
+    }
+
+    &__character-img-container {
+        position: relative;
+        width: 100%;
+        height: 354px;
+    }
+
+    &__character-bg-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 275px;
+        height: 275px;
+        border-radius: 50%;
+        background-color: var(--gray-dark);
+
+        &--right {
+            right: 0;
+            left: unset;
+            background-color: var(--white);
+        }
+
+
+    }
+
+    &__character-img {
+        width: 400px;
+        z-index: 100;
+        position: absolute;
+        top: -62px;
+        left: -4px;
+
+        &--right {
+            right: -4px;
+            left: unset;
+        }
+
+    }
+
+    &__vs {
+        font-family: 'Galaxy';
+        font-size: 150px;
+        @include align-center;
+        margin-bottom: 10px;
+    }
+
+    &__character-name {
+        font-family: 'Starjedi';
+        font-size: 40px;
+        margin-bottom: 17px;
+
+        &--right {
+            text-align: right;
+        }
+    }
+
+    &__character-hp-container {
+        display: flex;
+        justify-content: flex-start;
+
+        &--right {
+            justify-content: flex-end;
+        }
+    }
+
+    &__character-hp {
+        border-radius: 3px;
+        background-color: var(--white);
+        height: 20px;
+        width: 400px;
+        position: relative;
+
+        &-bar {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            height: 20px;
+            width: 400px;
+            background-color: var(--bar-bg-color);
+            border-radius: 3px;
+
+            &--right {
+                right: 0px;
+                left: unset;
+            }
+        }
+
+        &-percent {
+            font-family: 'Poppins_Bold';
+            font-size: 24px;
+            position: absolute;
+            top: 32px;
+            transform: translateX(-30%);
+
+            &--right {
+                transform: translateX(30%);
+            }
+        }
+    }
+}

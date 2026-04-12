@@ -248,3 +248,10 @@
         gap: 16px;
     }
 }
+
+.error-message {
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 14px;
+    color: var(--text-error);
+}

@@ -2,11 +2,12 @@ import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, ElementRef, in
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { register } from 'swiper/element/bundle';
 import type { Swiper } from 'swiper/types';
-import { CharacterSideLabel, ICharacter } from '../../core/interfaces/character.interface';
-import { CharacterNameHtmlPipe } from '../../core/pipes/character-name-html.pipe';
+import { CharacterSide, CharacterSideLabel, ICharacter, ISimulationResponse } from '../../core/interfaces/character.interface';
+import { CharacterNameHtmlPipe } from '../../shared/pipes/character-name-html.pipe';
 import { CharacterApiService } from '../../services/character/character-api.service';
-import { handleHttpError } from '../../shared/utils/http-error.utils';
 import { WebstarButtonComponent } from '../../shared/components/webstar-button/webstar-button.component';
+import { handleHttpError } from '../../shared/utils/http-error.utils';
+import { Router } from '@angular/router';
 
 register();
 
@@ -23,12 +24,14 @@ export class CharacterSelectorComponent implements OnInit {
 
   protected readonly CharacterSideLabel = CharacterSideLabel;
   private readonly characterApiService = inject(CharacterApiService);
+  private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
 
   characters = signal<ICharacter[]>([]);
   activeCharacter = signal<ICharacter | null>(null);
   characterIndex = signal<number>(0);
   selectedCharacters = signal<ICharacter[]>([]);
+  errorMessage = signal<string | null>(null);
 
   readonly isActiveCharacterSelected = computed(() => {
     const active = this.activeCharacter();
@@ -122,6 +125,31 @@ export class CharacterSelectorComponent implements OnInit {
   }
 
   startBattle(): void {
-    this.selectedCharacters.set([]);
+    const lighSide = this.selectedCharacters().find((c) => c.side === CharacterSide.LIGHT);
+    const darkSide = this.selectedCharacters().find((c) => c.side === CharacterSide.DARK);
+    if (!lighSide || !darkSide) return;
+    this.characterApiService.simulateBattle({
+      light: lighSide.id,
+      dark: darkSide.id
+    }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
+      next: (response: ISimulationResponse) => {
+        this.selectedCharacters.set([]);
+        this.errorMessage.set(null);
+        this.router.navigate(['/battle'], { queryParams: {
+            light: lighSide.id,
+            dark: darkSide.id
+          }
+        });
+      },
+      error: (error: unknown) => {
+        const serverMessage = handleHttpError(error, {
+          returnServerMessageFor500: true,
+        });
+        if (serverMessage !== undefined) {
+          this.errorMessage.set(serverMessage);
+        }
+      }
+    });
+    
   }
 }

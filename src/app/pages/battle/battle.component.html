@@ -1,0 +1,54 @@
+<div class="battle-main-container">
+    <div class="battle-container">
+        <div class="battle-header">A tudás legyen veled!</div>
+        <div class="battle-content">
+            <div class="battle-content__character">
+                <div class="battle-content__side-label">Sötét oldal</div>
+                <div class="battle-content__character-img-container">
+                    <div class="battle-content__character-bg-img">
+                        @if(darkCharacter()) {
+                        <img class="battle-content__character-img" [src]="'/assets/' + darkCharacter()?.id + '.png'">
+                        }
+                    </div>
+                </div>
+                <div class="battle-content__character-name">{{darkCharacter()!.name}}</div>
+                <div class="battle-content__character-hp-container">
+                    <div class="battle-content__character-hp">
+                        <div class="battle-content__character-hp-bar" [style.width.%]="darkCharacterHp()"
+                            [ngStyle]="{'--bar-bg-color': darkCharacterHp() > 50 ? 'var(--yellow)' : 'var(--red)'}">
+                        </div>
+                        <div class="battle-content__character-hp-percent" [style.left.%]="darkCharacterHp()">
+                            {{darkCharacterHp()}}%</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="battle-content__vs">VS</div>
+            <div class="battle-content__character">
+                <div class="battle-content__side-label battle-content__side-label--right">Világos oldal</div>
+                <div class="battle-content__character-img-container">
+                    <div class="battle-content__character-bg-img battle-content__character-bg-img--right">
+                        @if(lightCharacter()) {
+                        <img class="battle-content__character-img battle-content__character-img--right"
+                            [src]="'/assets/' + lightCharacter()?.id + '.png'">
+                        }
+                    </div>
+                </div>
+                <div class="battle-content__character-name battle-content__character-name--right">
+                    {{lightCharacter()?.name}}</div>
+                <div class="battle-content__character-hp-container battle-content__character-hp-container--right">
+                    <div class="battle-content__character-hp">
+                        <div class="battle-content__character-hp-bar battle-content__character-hp-bar--right"
+                            [style.width.%]="lightCharacterHp()"
+                            [ngStyle]="{'--bar-bg-color': lightCharacterHp() > 50 ? 'var(--yellow)' : 'var(--red)'}">
+                        </div>
+                        <div class="battle-content__character-hp-percent battle-content__character-hp-percent--right"
+                            [style.right.%]="lightCharacterHp()">
+                            {{lightCharacterHp()}}%</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

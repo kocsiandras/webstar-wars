@@ -23,3 +23,12 @@ export const CharacterSideLabel: Record<CharacterSide, string> = {
     [CharacterSide.LIGHT]: 'Világos',
     [CharacterSide.DARK]: 'Sötét',
 }
+
+export interface ISimulationRequest {
+    light: string;
+    dark: string;
+}
+
+export interface ISimulationResponse {
+    simulationId: string;
+}

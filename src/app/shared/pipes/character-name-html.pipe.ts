@@ -9,11 +9,16 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CharacterNameHtmlPipe implements PipeTransform {
   private readonly sanitizer = inject(DomSanitizer);
 
-  transform(value: string | null | undefined): string {
+  transform(value: string | null | undefined, lowercase: boolean = false): string {
     if (value == null || value === '') {
       return '';
     }
-    const normalized = value.replace(/\r\n|\r|\n/g, '<br>');
+
+    let normalized = value;
+    if (lowercase) {
+      normalized = value.toLowerCase();
+    }
+    normalized = normalized.replace(/\r\n|\r|\n/g, '<br>');
     return this.sanitizer.sanitize(SecurityContext.HTML, normalized) ?? '';
   }
 }
